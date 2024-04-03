@@ -1,0 +1,73 @@
+APPLICATION	CarMaker 13.0.1 - Car_Generic #5 (win64-13.0.1)
+COMPILED	jetbrains@6be5821ad487 2024-01-30 13:19:45
+ 
+		I/O Configuration: default
+SIM_START	day7_final_contest	2024-04-01 09:31:18
+TIME	0.001
+		Current random seed value = 1711931478
+TIME	0.000
+SIMULATE	day7_final_contest
+
+SIM_END		day7_final_contest	0s	0m
+APPLICATION	CarMaker 13.0.1 - Car_Generic #5 (win64-13.0.1)
+COMPILED	jetbrains@6be5821ad487 2024-01-30 13:19:45
+ 
+		I/O Configuration: default
+SIM_START	day7_final_contest	2024-04-01 09:31:38
+TIME	0.001
+		Current random seed value = 1711931498
+TIME	0.000
+SIMULATE	day7_final_contest
+
+SIM_END		day7_final_contest	0s	0m
+APPLICATION	CarMaker 13.0.1 - Car_Generic #5 (win64-13.0.1)
+COMPILED	jetbrains@6be5821ad487 2024-01-30 13:19:45
+ 
+		I/O Configuration: default
+SIM_START	day7_final_contest	2024-04-01 09:33:06
+TIME	0.001
+		Current random seed value = 1711931586
+TIME	0.000
+SIMULATE	day7_final_contest
+
+TIME	17.048
+ERROR		Embedded FARoadSensor Geo:  xyz (4.76 9.97 2.90) not found on Road
+SIM_ABORT	day7_final_contest	17.051s	88.7229m
+APPLICATION	CarMaker 13.0.1 - Car_Generic #5 (win64-13.0.1)
+COMPILED	jetbrains@6be5821ad487 2024-01-30 13:19:45
+ 
+		I/O Configuration: default
+SIM_START	day7_final_contest	2024-04-01 09:36:22
+TIME	0.001
+		Current random seed value = 1711931782
+TIME	0.000
+SIMULATE	day7_final_contest
+
+TIME	18.740
+ERROR		Vehicle leaves road at about x=-43.5453, y=9.27359 TireNo=0
+SIM_ABORT	day7_final_contest	18.743s	67.8278m
+APPLICATION	CarMaker 13.0.1 - Car_Generic #5 (win64-13.0.1)
+COMPILED	jetbrains@6be5821ad487 2024-01-30 13:19:45
+ 
+		I/O Configuration: default
+SIM_START	day7_final_contest	2024-04-01 09:41:09
+TIME	0.001
+		Current random seed value = 1711932069
+TIME	0.000
+SIMULATE	day7_final_contest
+
+TIME	11.753
+SIM_END		day7_final_contest	11.75s	33.6659m
+APPLICATION	CarMaker 13.0.1 - Car_Generic #5 (win64-13.0.1)
+COMPILED	jetbrains@6be5821ad487 2024-01-30 13:19:45
+ 
+		I/O Configuration: default
+SIM_START	day7_final_contest	2024-04-01 09:41:49
+TIME	0.001
+		Current random seed value = 1711932109
+TIME	0.000
+SIMULATE	day7_final_contest
+
+TIME	15.667
+ERROR		Vehicle leaves road at about x=-49.9952, y=29.0029 TireNo=0
+SIM_ABORT	day7_final_contest	15.67s	49.9686m

@@ -1,0 +1,13 @@
+
+
+SYSTEM_START	-	desktop-agmdb8m	월 4 1 03:11:02 2024
+
+
+SYSTEM_INFO	Movie NX pro 13.0.1 2024-01-29
+[Warning] Invalid configuration file for Creator "MovieNX". Perhaps the file was not yet created? Path: C:/Users/USER/MovieNX/data/View/ViewSettings.cfg)
+APO: Successfully connected to: CarMaker 13.0.1 - Car_Generic @ DESKTOP-AGMDB8M(127.0.0.1):11372
+Using RenderSettingsProfile: RenderSettings_high.cfg -> template_high.render
+Loading Installed scripts...
+Loading User scripts...
+ApoConnection: Disconnecting...
+[ERROR] [Engine] D3D11Ext::shutdown(): 4 unreleased references
