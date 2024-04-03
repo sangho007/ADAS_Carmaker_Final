@@ -2,13 +2,13 @@
 
 
 
-f1 = load('Data\Data\waypoints_data.mat');
+f1 = load('Logic/map/waypoints_data.mat');
 
 n_waypoint = height(f1.ids); % Determine the number of IDs in the waypoints data
 
 % Index identifying a specific road profile
 
-f2 = load('Data\Data\roadprofiles_data.mat');
+f2 = load('Logic/map/roadprofiles_data.mat');
 
 n_roadprofile = height(f2.ids); % Determine the number of IDs in the road profile data
 

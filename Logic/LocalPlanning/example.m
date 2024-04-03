@@ -20,8 +20,8 @@ clear;close;clc;
 % title(['Current Road ID: ' num2str(current_road_id)]);
 % grid on;
 
-f1 = load('Data\Data\waypoints_data.mat');
-f2 = load('Data\Data\roadprofiles_data.mat');
+f1 = load('Logic/map/waypoints_data.mat');
+f2 = load('Logic/map/roadprofiles_data.mat');
 
 
 len_id = zeros(1,33)

@@ -1,0 +1,112 @@
+clear all; close all;clc;
+
+f1 = load('Logic/map/waypoints_data.mat');
+f2 = load('Logic/map/roadprofiles_data.mat');
+
+n_roadprofile = length(f2.index_lane');
+
+
+%% Animate Movement for Road Profile 1 to 10
+
+path = [1:10 29 31 33];
+p_cnt = 1;
+
+figure(2);
+
+num_future_points = 20; % 미래 점들의 개수를 설정합니다.
+
+% Extract the global X, Y coordinates for the entire path
+p_x = [];
+p_y = [];
+for i = path
+    for j = 1:50
+        if f2.waypoints(i,j) ~= 0 % Valid waypoint
+            p_x(end+1) = f1.waypoints(f2.waypoints(i,j),1);
+            p_y(end+1) = f1.waypoints(f2.waypoints(i,j),2);
+        end
+    end
+end
+
+% Initialize for animation
+for k = 1:length(p_x)-num_future_points
+    clf; % Clear the figure
+
+    if k == 1
+        % Initial orientation based on the first segment
+        Yaw_ego = atan2((p_y(2) - p_y(1)), (p_x(2) - p_x(1)));
+    else
+        % Update orientation based on current segment
+        Yaw_ego = atan2((p_y(k+1) - p_y(k)), (p_x(k+1) - p_x(k)));
+    end
+
+    % Create a Global2Local_class object for converting the entire map
+    g2l_map = Global2Local_class(length(f1.waypoints));
+
+    % Convert the entire map to local coordinates
+    localPoints_map = g2l_map.convert([f1.waypoints(:,1), f1.waypoints(:,2)], Yaw_ego, p_x(k), p_y(k)).LocalPoints;
+
+    % Plot the entire map in local coordinates
+    plot(localPoints_map(:,1), localPoints_map(:,2), 'k.'); % Plot all waypoints as black dots
+    hold on;
+
+    % Loop through each road profile
+    for m = 1 : n_roadprofile
+        x = [f1.waypoints(f2.waypoints(m,1),1)];
+        y = [f1.waypoints(f2.waypoints(m,1),2)];
+        for n=2:50
+            % If waypoint index is not 0 (meaning it's a valid waypoint)
+            if f2.waypoints(m,n) ~= 0
+                x(end+1) = f1.waypoints(f2.waypoints(m,n),1);
+                y(end+1) = f1.waypoints(f2.waypoints(m,n),2);
+            end
+        end
+
+        % Create a Global2Local_class object for converting the current road profile
+        g2l_profile = Global2Local_class(length(x));
+
+        % Convert the current road profile to local coordinates
+        localPoints_profile = g2l_profile.convert([x', y'], Yaw_ego, p_x(k), p_y(k)).LocalPoints;
+
+        % Color the current road profile red if it contains the current position, otherwise blue
+        if any(ismember(f2.waypoints(m,1:find(f2.waypoints(m,:)==0,1)-1), f2.waypoints(path(1),1)))
+            plot(localPoints_profile(:,1), localPoints_profile(:,2), 'r-','LineWidth',2 );
+        else
+            plot(localPoints_profile(:,1), localPoints_profile(:,2), 'b-','LineWidth',1 );
+        end
+    end
+
+    % Create a Global2Local_class object for converting the remaining global path
+    g2l_path = Global2Local_class(num_future_points + 1);
+
+    % Convert the remaining global path to local coordinates
+    localPoints_path = g2l_path.convert([p_x(k:k+num_future_points)', p_y(k:k+num_future_points)'], Yaw_ego, p_x(k), p_y(k)).LocalPoints;
+
+    % Animation: Plot the local path from the current position
+    plot(localPoints_path(:,1), localPoints_path(:,2), 'c*','LineWidth',2);
+    plot(0, 0, 'ro', 'MarkerSize', 10, 'LineWidth', 2); % Plot the vehicle position
+
+    xlim([-100 100]);
+    ylim([-100 100]);
+    xlabel('X (m)');
+    ylabel('Y (m)');
+
+    % Find the current road ID
+    % Find the current road ID
+    current_road_indices = find(ismember(f2.waypoints(path,:),find(ismember(f1.waypoints(:,1),p_x(k)) & ismember(f1.waypoints(:,2),p_y(k)))));
+    if ~isempty(current_road_indices)
+        current_path_index = find(ismember(path(current_road_indices),path));
+        if ~isempty(current_path_index)
+            current_road_id = path(current_path_index(1));
+        else
+            current_road_id = NaN; % or any other appropriate value
+        end
+    else
+        current_road_id = NaN; % or any other appropriate value
+    end
+    title(['Road ID: ' num2str(current_road_id)]);
+    grid on;
+
+    pause(0.1); % Pause for animation effect
+
+    % For dynamic simulation, remove or update this part as needed
+end
